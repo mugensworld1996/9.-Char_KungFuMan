@@ -1,0 +1,19 @@
+[Info]
+name="Kung Fu Man"
+displayname="Kung Fu Man"
+versiondate=
+mugenversion=
+author="Mugen's World"
+pal.defaults=1,2,
+[Files]
+sprite=assets/kungFuMan.sff
+sound=assets/kungFuMan.snd
+anim=assets/kungFuMan.air
+cmd=logic/kungFuMan.cmd
+cns=logic/kungFuMan.cns
+st=logic/kungFuMan.cns
+stcommon=common1.cns
+pal1=palette/kungFuMan.act
+[Arcade]
+intro.storyboard=
+ending.storyboard=
