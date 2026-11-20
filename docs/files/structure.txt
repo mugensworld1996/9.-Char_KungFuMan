@@ -1,0 +1,49 @@
+============================================================
+MUGEN CHARACTER STRUCTURE
+============================================================
+
+Proyecto:
+D:\Cantoral\3. Personal\2. Proyectos\1. Mugen\2. Chars\9.-Char_KungFuMan\KungFuMan_Char
+
+Generado:
+jue. 19/11/2026 13:25:40.66
+
+============================================================
+
+Listado de rutas de carpetas
+El n£mero de serie del volumen es 000000ED B64D:88B4
+D:\CANTORAL\3. PERSONAL\2. PROYECTOS\1. MUGEN\2. CHARS\9.-CHAR_KUNGFUMAN\KUNGFUMAN_CHAR
+|   kungFuMan.def
+|   
++---assets
+|   |   kfm.snd
+|   |   kfm720.ai
+|   |   kfm720.air
+|   |   kfm720.sff
+|   |   
+|   \---storyboards
+|           ending.def
+|           ending.sff
+|           intro.def
+|           intro.sff
+|           
++---logic
+|   +---combat
+|   |       defense.cns
+|   |       normals.cns
+|   |       specials.cns
+|   |       supers.cns
+|   |       throws.cns
+|   |       zankou.cns
+|   |       
+|   +---commands
+|   |       kfm720.cmd
+|   |       
+|   \---core
+|           constants.cns
+|           core.cns
+|           system.cns
+|           
+\---palette
+        kungFuMan.act
+        

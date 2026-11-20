@@ -1,0 +1,78 @@
+# Kung Fu Man — Gameplay Guide
+# MUGEN 1.0
+# ESTADO: SIN MOVESET DEFINITIVO IMPLEMENTADO
+
+===============================================================================
+IMPORTANTE
+===============================================================================
+
+Este documento debe contener SOLAMENTE controles que funcionen realmente.
+
+Actualmente no se documenta un moveset final para Kung Fu Man.
+
+Las ideas de gameplay pertenecen a:
+
+    4. labs.txt
+
+===============================================================================
+1. LAYOUT MUGEN
+===============================================================================
+
+    x  y  z
+    a  b  c
+          s
+
+===============================================================================
+2. MOVIMIENTO
+===============================================================================
+
+Pendiente de validar en código:
+
+    Stand
+    Turn
+    Walk Forward
+    Walk Back
+    Crouch
+    Jump
+    Run / Dash
+    Guard
+
+===============================================================================
+3. ATAQUES
+===============================================================================
+
+Pendiente de implementación / validación:
+
+    Normals de pie
+    Normals agachados
+    Normals aéreos
+    Throw
+    Specials
+    Supers
+
+===============================================================================
+4. SISTEMA ÚNICO
+===============================================================================
+
+Todavía no existe un sistema único documentado como implementado.
+
+Consultar ideas en:
+
+    4. labs.txt
+
+===============================================================================
+5. REGLA DE MANTENIMIENTO
+===============================================================================
+
+Cuando un movimiento funcione de verdad, registrar:
+
+Input:
+State:
+Action:
+Condiciones:
+Resultado:
+Cancelaciones:
+Coste:
+Notas:
+
+No copiar aquí una idea de Labs hasta que exista en el código.

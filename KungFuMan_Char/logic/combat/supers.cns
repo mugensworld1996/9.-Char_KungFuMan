@@ -1,0 +1,271 @@
+﻿; KFM720 - Triple Kung Fu Palm y Smash Kung Fu Upper.
+;---------------------------------------------------------------------------
+; Triple Kung Fu Palm (hyper)
+; CNS difficulty: medium
+; Notes: Notice that the HitDefs in supers have "getpower = 0". This makes
+;        sure KFM doesn't recharge his super guage as he hits.
+;        Also, the attributes for the HitDefs is "HA" for "hyper attack",
+;        ie. "attr = S, HA".
+;        Notice how the first HitDef is reused twice by allowing it to
+;        trigger on two animation elements.
+[Statedef 3000]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+velset = 0,0
+anim = 3000
+ctrl = 0
+sprpriority = 2
+
+[State 3000, Width]
+type = Width
+trigger1 = AnimElem = 2, >= 0
+value = 60,0
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 2, 1
+pos = 100, -228
+anim = 100
+sound = 20, 0
+poweradd = -1000
+
+[State 3000, Super B]
+type = AfterImage
+trigger1 = AnimElem = 2, 1
+time = 2
+
+[State 3000, Super C]
+type = AfterImageTime
+trigger1 = AnimElemTime(2) >= 1 && Time < 60
+time = 2
+
+[State 3000, Super D]
+type = NotHitBy
+trigger1 = AnimElem = 2
+value = , NA, SA, AT
+time = 11
+
+[State 3000, Super E]
+type = NotHitBy
+trigger1 = AnimElemTime(2) >= 0 && AnimElemTime(14) < 0
+value2 = C, NA
+time = 1
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+trigger2 = AnimElem = 12
+trigger3 = AnimElem = 20
+value = 0, 3
+
+[State 3000, 2]
+type = PosAdd
+trigger1 = AnimElem = 2
+x = 80
+
+[State 3000, 3]
+type = PosAdd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 11
+trigger3 = AnimElem = 13
+trigger4 = AnimElem = 19
+trigger5 = AnimElem = 21
+trigger4 = AnimElem = 31
+x = 40
+
+[State 3000, 4]
+type = VelSet
+trigger1 = AnimElem = 5
+trigger2 = AnimElem = 13
+trigger3 = AnimElem = 21
+x = 24
+
+[State 3000, 4]
+type = PosAdd
+trigger1 = AnimElem = 5
+x = 20
+
+[State 3000, 5]
+type = HitDef
+trigger1 = AnimElem = 5
+trigger2 = AnimElem = 13
+attr = S, HA
+animtype  = Hard
+damage    = 72,4
+getpower  = 0
+priority  = 6
+guardflag = MA
+pausetime = 15,15
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 32
+ground.hittime  = 32
+ground.velocity = -24
+air.velocity = -12,-11.2
+air.fall = 1
+fall.animtype = Hard
+fall.recover = 0
+
+[State 3000, 6]
+type = HitDef
+trigger1 = AnimElem = 21
+attr = S, HA
+animtype  = Hard
+damage    = 75,4
+getpower  = 0
+priority  = 5
+guardflag = MA
+pausetime = 15,15
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 32
+ground.hittime  = 32
+ground.velocity = -20, -16
+guard.velocity = -48
+air.velocity = -20,-16
+airguard.velocity = -12,-12
+fall.animtype = Hard
+fall = 1
+fall.recover = 0
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Smash Kung Fu Upper (hyper)
+; CNS difficulty: medium
+; Description: This is very similar to KFM's Strong and Light Kung Fu Uppers.
+;     There is just one HitDef, for a screen-shaking hit. The envshake
+;     parameters are used to make this effect. You can find out more about
+;     each parameter in the CNS documentation.
+;     The fall.recover parameter is set at 0, meaning that p2 cannot recover
+;     from the fall by entering his recovery command (for KFM, that is x+y).
+;     This gives the attacking KFM a chance to follow up with another attack,
+;     such as the Fast Kung Fu Palm.
+;     Note that there is a ChangeState controller used to make KFM change to
+;     a success state if he hits. The success state has KFM hold his arm
+;     up longer for a dramatic effect.
+[Statedef 3050]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+velset = 0,0
+anim = 3050
+ctrl = 0
+sprpriority = 2
+
+[State 3050, Width]
+type = Width
+trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(16) < 0
+value = 5,0
+
+[State 3050, Super A]
+type = SuperPause
+trigger1 = AnimElem = 2
+pos = -20, -220
+anim = 100
+sound = 20, 0
+poweradd = -1000
+
+[State 3050, Super B]
+type = AfterImage
+trigger1 = AnimElem = 2
+time = 2
+
+[State 3050, Super C]
+type = AfterImageTime
+trigger1 = AnimElemTime(2) >= 0
+time = 2
+
+[State 3050, Super D]
+type = NotHitBy
+trigger1 = AnimElem = 2
+value = , NA, SA, AT
+time = 6
+
+[State 3050, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 3050, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HA
+animtype  = Up               ;Make p2 use "Up" type animation on hit
+damage    = 155, 12
+getpower  = 0
+priority  = 5
+guardflag = MA
+pausetime = 30,30
+sparkno = 3
+sparkxy = 0,-440
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 28
+ground.hittime  = 28
+ground.velocity = -5.2,-100
+guard.velocity = -44
+air.velocity = -5.2,-100
+airguard.velocity = -18,-20
+envshake.time = 25           ;Parameters for shaking the screen on hit
+envshake.ampl = 28
+envshake.freq = 176
+p2facing = 1                 ;Force p2 to face p1 on hit
+fall = 1
+fall.recover = 0             ;Prevent p2 from recovering
+fall.damage = 70             ;p2 will take 70 damage on hitting the ground
+fall.envshake.ampl = 24      ;Parameters for shaking the screen on fall
+fall.envshake.freq = 178
+fall.envshake.time = 15
+mindist = 200,-400           ;Keep p2 a minimum of 200 pixels away from p1, and no higher than 400 pixels up
+maxdist = 400,-40            ;Keep p2 a maximum of 400 pixels away from p1, and no lower than 40 pixels below
+yaccel = 3.2
+
+;This controller below makes Kung Fu man change to a success state if he
+;successfully hits the Smash Kung Fu Upper.
+[State 3050, 4]
+type = ChangeState
+trigger1 = MoveHit
+value = 3051
+
+[State 3050, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------
+; Smash Kung Fu Upper (success)
+; Description: This is the state that KFM changes to if he successfully hits
+;     with Smash Kung Fu Upper. KFM holds his arm high for a short while
+;     longer, then changes back to his idle stand state.
+[Statedef 3051]
+type    = S
+movetype= A
+physics = S
+anim = 3051
+
+[State 3051, 1]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 3051, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+

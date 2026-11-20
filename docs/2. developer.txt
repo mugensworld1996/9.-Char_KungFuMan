@@ -1,0 +1,147 @@
+# Kung Fu Man — Developer Documentation
+# MUGEN 1.0
+# ESTADO: ESTRUCTURA INICIAL / SIN GAMEPLAY DOCUMENTADO
+
+===============================================================================
+REGLA PRINCIPAL
+===============================================================================
+
+Este archivo documenta solamente lo que existe técnicamente.
+
+En este momento el proyecto de Kung Fu Man se considera en PREPRODUCCIÓN.
+
+NO tratar como implementado nada de:
+
+    4. labs.txt
+
+===============================================================================
+1. ENGINE OBJETIVO
+===============================================================================
+
+    MUGEN 1.0
+
+===============================================================================
+2. ESTRUCTURA PROPUESTA DEL CHAR
+===============================================================================
+
+KungFuMan_Char/
+├── assets/
+│   └── storyboards/
+├── logic/
+│   ├── core/
+│   ├── commands/
+│   ├── combat/
+│   └── ai/
+└── palette/
+
+Responsabilidades base:
+
+core/
+    Estados comunes, constantes, inicialización, variables y lógica global.
+
+commands/
+    CMD e inputs del personaje.
+
+combat/
+    Normals, throws, Specials, Supers y lógica de combate general.
+
+ai/
+    Lógica de IA cuando llegue esa etapa.
+
+Módulos específicos propuestos:
+    - Sin módulo específico definido todavía.
+
+===============================================================================
+3. ESTRUCTURA VISUAL PROPUESTA
+===============================================================================
+
+Modos / bloques principales de sprites:
+
+    - 01_BASE
+
+Además:
+
+    00_INTERFACE
+    XX_EFFECTS
+    90_WORK
+    99_ARCHIVE
+
+Cada modo de gameplay usa como base:
+
+    01_Movement
+    02_Standing_Attacks
+    03_Crouching_Attacks
+    04_Air_Attacks
+    05_Throws
+    06_Specials
+    07_Supers
+    08_Intros
+    09_Finishes
+
+===============================================================================
+4. ESTADO TÉCNICO REAL
+===============================================================================
+
+Actualmente documentado:
+
+    - estructura inicial;
+    - separación de responsabilidades;
+    - planificación de carpetas.
+
+Todavía NO documentado como implementado:
+
+    - States definitivos;
+    - Actions definitivas;
+    - variables globales;
+    - Helpers;
+    - Explods;
+    - HitDefs;
+    - comandos finales;
+    - Specials;
+    - Supers;
+    - IA.
+
+Cuando se programe el primer sistema real, añadir aquí:
+- StateNo;
+- Action;
+- variables;
+- archivos responsables;
+- flujo;
+- limitaciones conocidas.
+
+===============================================================================
+5. CONVENCIÓN RECOMENDADA
+===============================================================================
+
+Mantener separados:
+
+CORE
+    comportamiento global.
+
+COMBAT
+    pelea general.
+
+MÓDULOS ESPECÍFICOS
+    sistemas únicos de Kung Fu Man.
+
+AI
+    inteligencia artificial.
+
+No crear un archivo gigante si un sistema ya tiene identidad propia.
+
+===============================================================================
+6. PUNTO DE INICIO RECOMENDADO
+===============================================================================
+
+1. Stand.
+2. Turn.
+3. Walk Forward / Back.
+4. Crouch Start / Crouch / Crouch End.
+5. Jump Start / Jump / Fall / Landing.
+6. Run / Dash.
+7. GetHit / Guard.
+8. Seis normals base.
+9. Throw.
+10. Primer Special.
+11. Primer Super.
+12. Sistema único del personaje.

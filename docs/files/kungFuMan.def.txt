@@ -1,0 +1,52 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Kung Fu Man 720"
+displayname ="Kung Fu Man"
+versiondate =09,30,2009
+mugenversion =14,04,2002
+author="Mugen's World"
+pal.defaults =1,2,3,4
+                            ;Numbering starts from 1
+localcoord = 1280,720       ;Local coordinate space width and height
+
+; Files for the player
+[Files]
+cmd     =logic/commands/kfm720.cmd
+cns     =logic/core/constants.cns
+st      =logic/core/core.cns
+stcommon =common1.cns
+sprite  =assets/kfm720.sff
+anim    =assets/kfm720.air
+sound   =assets/kfm.snd
+ai      = assets/kfm720.ai         ;AI hints data (not used)
+pal1=palette/kungFuMan.act
+st1=logic/combat/normals.cns
+st2=logic/combat/throws.cns
+st3=logic/combat/specials.cns
+st4=logic/combat/defense.cns
+st5=logic/combat/zankou.cns
+st6=logic/combat/supers.cns
+st7=logic/core/system.cns
+
+; Maps character selection buttons to palette numbers.
+[Palette Keymap]
+x = 1 ;Press button X to select palette 1, etc.
+y = 2
+z = 3
+a = 4
+b = 5
+c = 6
+;x2 = 7 ;Hold Start and press button X for palette 7, etc.
+;y2 = 8
+;z2 = 9
+;a2 = 10
+;b2 = 11
+;c2 = 12
+
+; Arcade mode
+[Arcade]
+intro.storyboard =assets/storyboards/intro.def
+ending.storyboard =assets/storyboards/ending.def

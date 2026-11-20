@@ -1,0 +1,284 @@
+# Kung Fu Man — MUGEN LABS
+# Lluvia de ideas / preproducción
+# TODO lo escrito aquí es FUTURO hasta que pase a Developer/Gameplay.
+
+===============================================================================
+1. IDENTIDAD DEL PROYECTO
+===============================================================================
+
+Personaje:
+    Kung Fu Man
+
+Origen / referencia:
+    MUGEN / Elecbyte
+
+Estado de identidad:
+    Identidad suficientemente definida para una primera propuesta.
+
+Objetivo:
+Diseñar un moveset que se sienta propio de Kung Fu Man, no simplemente una plantilla
+de MUGEN con sprites diferentes.
+
+===============================================================================
+2. FANTASÍA CENTRAL DE COMBATE
+===============================================================================
+
+Arquetipo de trabajo provisional:
+
+    martial
+
+Preguntas que deben resolverse antes de cerrar gameplay:
+
+- ¿Qué debe sentir el jugador durante los primeros 10 segundos?
+- ¿Cuál es la herramienta que define al personaje?
+- ¿Qué movimiento sería imposible quitar sin perder su identidad?
+- ¿Cuál será su mayor fortaleza?
+- ¿Cuál será su debilidad deliberada?
+- ¿Qué recurso/sistema especial realmente merece existir?
+- ¿Qué ideas son solo visuales y cuáles cambian gameplay?
+
+===============================================================================
+3. IDEAS BASE
+===============================================================================
+
+- Priorizar footsies y strings de cuerpo a cuerpo.
+- Agregar al menos un counter/parry o evasión contextual.
+- Separar normals rápidos, medios y launcher/knockdown.
+- Super centrado en una secuencia técnica.
+- Mantener identidad MUGEN clásica.
+- Expandir sin perder su moveset sencillo de aprendizaje.
+- Supers como homenaje a Elecbyte/MUGEN.
+
+===============================================================================
+4. MOVIMIENTO
+===============================================================================
+
+Diseñar como mínimo:
+
+- Stand con personalidad.
+- Turn propio si visualmente lo necesita.
+- Walk Forward.
+- Walk Back.
+- Crouch Start.
+- Crouch.
+- Crouch End.
+- Jump Start.
+- Jump Neutral.
+- Jump Forward.
+- Jump Back.
+- Fall.
+- Landing.
+- Run / Dash.
+- Back Dash / Hop si encaja.
+
+Preguntas:
+
+- ¿Es rápido, pesado, flotante, acrobático o deliberado?
+- ¿Tiene movilidad aérea especial?
+- ¿Tiene teleport, vuelo, wall movement o dash único?
+- ¿Esa movilidad necesita recurso/cooldown?
+
+===============================================================================
+5. NORMALS
+===============================================================================
+
+Crear primero seis normals legibles:
+
+    Light Punch
+    Medium Punch
+    Heavy Punch
+    Light Kick
+    Medium Kick
+    Heavy Kick
+
+Después:
+
+    6 crouching normals
+    6 air normals
+
+No intentar meter todas las referencias del personaje antes de que este núcleo
+sea divertido y consistente.
+
+===============================================================================
+6. THROW / DEFENSA / REACCIONES
+===============================================================================
+
+Planificar:
+
+- Throw adelante.
+- Throw atrás si aporta algo.
+- Guard Stand.
+- Guard Crouch.
+- Guard Air.
+- GetHit ligero/medio/fuerte.
+- Knockback.
+- Fall.
+- Liedown.
+- GetUp.
+- Dizzy si se usará.
+- KO.
+
+Posibles sistemas:
+- parry;
+- counter;
+- armor;
+- dodge;
+- evade;
+solo si encajan con la identidad.
+
+===============================================================================
+7. SPECIALS
+===============================================================================
+
+Objetivo inicial:
+
+    3 a 5 Specials.
+
+Roles recomendados:
+
+1. herramienta de acercamiento;
+2. anti-air;
+3. control de espacio;
+4. movilidad/escape;
+5. movimiento de identidad.
+
+No todos los personajes necesitan los cinco.
+
+===============================================================================
+8. SUPERS
+===============================================================================
+
+Planificar al menos:
+
+- Super Lv1: simple, útil y rápido.
+- Super Lv1/Lv2 alternativo: cambia función.
+- Super Lv3: gran representación del personaje.
+
+Evitar que todos los Supers sean solamente una cinemática larga.
+
+===============================================================================
+9. MECÁNICA ÚNICA
+===============================================================================
+
+Posibilidades a evaluar:
+
+- medidor secundario;
+- cambio de arma;
+- transformación;
+- stance;
+- power-up;
+- recurso limitado;
+- assists;
+- modo temporal;
+- objeto persistente;
+- proyectil recuperable;
+- sistema de carga.
+
+Elegir SOLO si mejora la identidad.
+
+===============================================================================
+10. INTROS / TAUNTS / WIN / FINISHES
+===============================================================================
+
+Preparar carpetas y conceptos para:
+
+- Intro genérica.
+- Intro especial contra rival relacionado.
+- Taunt.
+- Win Pose 1.
+- Win Pose 2.
+- Lose/KO especial si vale la pena.
+- Finisher/Super cinematográfico si encaja.
+
+Las referencias deben ser reconocibles sin obligar a reproducir escenas completas.
+
+===============================================================================
+11. FX / SONIDO
+===============================================================================
+
+Separar:
+
+- Hit sparks generales.
+- Trails.
+- Projectiles.
+- Aura.
+- Ground FX.
+- Transformaciones.
+- FX exclusivos de Specials/Supers.
+
+Principio:
+si un FX se reutiliza, va a EFFECTS.
+si pertenece a un único movimiento, puede vivir dentro de la carpeta de ese
+movimiento.
+
+===============================================================================
+12. ESTRUCTURA DE SPRITES
+===============================================================================
+
+Cada modo principal puede usar:
+
+    01_Movement/
+    02_Standing_Attacks/
+    03_Crouching_Attacks/
+    04_Air_Attacks/
+    05_Throws/
+    06_Specials/
+    07_Supers/
+    08_Intros/
+    09_Finishes/
+
+Pipeline interno recomendado por animación:
+
+    00_SOURCE/
+    01_RESIZED/
+    02_CLEAN/
+    03_FINAL/
+
+Nunca destruir el SOURCE de alta resolución.
+
+===============================================================================
+13. ORDEN DE DESARROLLO
+===============================================================================
+
+FASE 1
+    locomoción completa.
+
+FASE 2
+    reactions + guard.
+
+FASE 3
+    normals.
+
+FASE 4
+    throw.
+
+FASE 5
+    sistema único.
+
+FASE 6
+    Specials.
+
+FASE 7
+    Supers.
+
+FASE 8
+    intros / wins / taunts.
+
+FASE 9
+    IA.
+
+FASE 10
+    balance / polish / FX finales.
+
+===============================================================================
+14. BACKLOG
+===============================================================================
+
+- Definir escala final de sprites antes de producir cientos de frames.
+- Definir nomenclatura de Actions y States.
+- Definir qué sistemas merecen archivos CNS separados.
+- Definir qué recursos serán Helpers/Explods.
+- Definir paletas.
+- Definir sonidos.
+- Definir lista de rivales con intros especiales.
+- Definir condición de versión 1.0 del personaje.

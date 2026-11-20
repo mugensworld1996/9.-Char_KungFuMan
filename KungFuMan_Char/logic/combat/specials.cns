@@ -1,0 +1,1476 @@
+﻿; KFM720 - Kung Fu Palm, Knee, Upper y Blow.
+;---------------------------------------------------------------------------
+; Kung Fu Palm
+; CNS difficulty: medium
+; Description: This is like a standard attack, but with some differences.
+;   There are two HitDefs in this attack. One is triggered when the
+;   opponent is near (using a p2bodydist trigger), and the other
+;   when the opponent is farther away. The main differences between
+;   the near and far versions of the HitDefs is that the near version
+;   has a "fall" parameter set to 1, causing the opponent to be knocked
+;   down. Other minor differences are the damage, and the velocity to
+;   give the opponent.
+;   The line "attr = S, SA" line means this is a Standing, Special Attack.
+;   It is important you have the attr parameter set correctly for all
+;   you HitDefs.
+[Statedef 1000]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 55
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 2
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = Time = 8
+value = 0, 3
+
+[State 1000, 2]
+type = PosAdd
+trigger1 = AnimElem = 2
+x = 80
+
+[State 1000, 3]
+type = PosAdd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 13
+x = 40
+
+[State 1000, 4]
+type = PosAdd
+trigger1 = AnimElem = 5
+x = 20
+
+[State 1000, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem = 5
+trigger1 = p2bodydist X < 160
+attr = S, SA
+animtype  = Hard
+damage    = 90, 4
+priority  = 5
+guardflag = MA
+pausetime = 15,15
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 17
+ground.velocity = -16,-14
+air.velocity = -16,-12
+fall = 1
+
+[State 1000, 6] ;Opponent not near
+type = HitDef
+trigger1 = AnimElem = 5
+trigger1 = p2bodydist X >= 160
+attr = S, SA
+animtype  = Hard
+damage    = 85, 4
+priority  = 4
+guardflag = MA
+pausetime = 15,15
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 17
+ground.velocity = -28
+air.velocity = -16,-10
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 9
+x = -20
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Strong Kung Fu Palm
+; CNS difficulty: medium
+[Statedef 1010]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 60
+velset = 0,0
+anim = 1010
+ctrl = 0
+sprpriority = 2
+
+[State 1010, 1]
+type = PlaySnd
+trigger1 = Time = 9
+value = 0, 3
+
+[State 1010, 2]
+type = PosAdd
+trigger1 = AnimElem = 2
+x = 80
+
+[State 1010, 3]
+type = PosAdd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 13
+x = 40
+
+[State 1010, 4]
+type = PosAdd
+trigger1 = AnimElem = 5
+x = 20
+
+[State 1010, 5]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 16
+
+[State 1010, 6] ;Opponent near
+type = HitDef
+trigger1 = AnimElem = 5
+trigger1 = p2bodydist X < 160
+attr = S, SA
+animtype  = Hard
+damage    = 90, 4
+priority  = 5
+guardflag = MA
+pausetime = 15,15
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 17
+ground.velocity = -16,-14
+air.velocity = -16,-12
+fall = 1
+
+[State 1010, 7] ;Opponent not near
+type = HitDef
+trigger1 = AnimElem = 5
+trigger1 = p2bodydist X >= 160
+attr = S, SA
+animtype  = Hard
+damage    = 85, 4
+priority  = 4
+guardflag = MA
+pausetime = 15,15
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 17
+ground.velocity = -28
+air.velocity = -16,-10
+
+[State 1010, 8]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Fast Kung Fu Palm
+; CNS difficulty: advanced
+; Description: This is a complicated attack move. If you're a beginner,
+;     you should skip looking at this for now and check it later when
+;     you are more comfortable with the cns.
+;     This move puts the other player in a custom get-hit state.
+;     The line "p2stateno = 1025" in the HitDef does this. KFM has some
+;     palette effects as well as after-image effects.
+[Statedef 1020]
+type    = S
+movetype= A
+physics = N
+juggle  = 6
+poweradd= -330
+velset = 0,0
+anim = 1020
+ctrl = 0
+sprpriority = 2
+
+[State 1020, Friction]
+type = VelMul
+trigger1 = 1
+x = .85 * ifelse (AnimElemTime(6) < 0, 1, .8)
+
+[State 1020, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1020, Afterimage]
+type = AfterImageTime
+trigger1 = AnimElemTime(8) < 0
+time = 2
+
+[State 1020, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1020, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 3
+
+[State 1020, 2]
+type = PosAdd
+trigger1 = AnimElem = 2
+x = 80
+
+[State 1020, 3]
+type = PosAdd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 12
+x = 40
+
+[State 1020, 4]
+type = PosAdd
+trigger1 = AnimElem = 4
+x = 20
+
+[State 1020, 5]
+type = VelSet
+trigger1 = AnimElem = 4
+x = 52
+
+[State 1020, 6]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, SA
+animtype  = Hard
+damage    = 95, 5
+getpower  = 0
+priority  = 4
+guardflag = MA
+pausetime = 8,7
+sparkxy = -40,-240
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -32,-28
+guard.velocity = -28
+air.velocity = -32,-28
+airguard.velocity = -20, -16
+fall = 1
+p2stateno = 1025    ;Make p2 go to state 1025 on hit
+p2facing = 1        ;Force to face p1
+
+[State 1020, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------
+; Hit by Fast Kung Fu Palm - shaking from the hit
+; (a custom gethit state)
+; See State 1020 for details
+[Statedef 1025]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 1025, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = 1
+value = 1025
+
+[State 1025, State]
+type = ChangeState
+trigger1 = HitShakeOver = 1
+value = 1026
+
+;------------------
+; Hit by Fast Kung Fu Palm - flying through the air
+; (a custom gethit state)
+[Statedef 1026]
+type    = A
+movetype= H
+physics = N
+
+[State 1026, Velocity]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+y = 1
+
+[State 1026, Gravity]
+type = VelAdd
+trigger1 = 1
+y = 1.8
+
+[State 1026, No scroll]
+type = ScreenBound
+triggerall = Pos y < -60
+trigger1 = BackEdgeBodyDist < 260
+trigger2 = FrontEdgeBodyDist < 260
+value = 1
+movecamera = 0,1
+
+[State 1026, Hit wall]
+type = ChangeState
+triggerall = Pos y < -60
+trigger1 = BackEdgeBodyDist <= 80
+trigger2 = FrontEdgeBodyDist <= 80
+value = 1027
+
+[State 1026, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
+;------------------
+; Hit by Fast Kung Fu Palm - hit wall
+; (a custom gethit state)
+[Statedef 1027]
+type    = A
+movetype= H
+physics = N
+
+[State 1027, Turn]
+type = Turn
+trigger1 = (Time = 0) && (FrontEdgeBodyDist <= 120)
+
+[State 1027, Pos]
+type = PosAdd
+trigger1 = Time = 0
+x = 60 - BackEdgeBodyDist
+
+[State 1027, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 1
+y = 1
+
+[State 1027, No scroll]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,1
+
+[State 1027, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 200
+postype = back
+sprpriority = 3
+
+[State 1027, Anim]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1027
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = F7,0
+
+[State 1027, State]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1028
+
+;------------------
+; Hit by Fast Kung Fu Palm - bounce off wall
+; (a custom gethit state)
+[Statedef 1028]
+type    = A
+movetype= H
+physics = N
+
+[State 1028, 1]
+type = NotHitBy
+trigger1 = 1
+value = , NA, NP
+
+[State 1028, Vel Y]
+type = VelSet
+trigger1 = Time = 0
+y = -24
+
+[State 1028, Vel X]
+type = VelSet
+trigger1 = Time = 0
+x = 6.4
+
+[State 1028, Turn]
+type = Turn
+trigger1 = (Time = 0) && (BackEdgeDist < 120)
+
+[State 1028, Gravity]
+type = VelAdd
+trigger1 = 1
+y = 1.4
+
+[State 1028, Anim 5050] ;Self falling animation
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = !SelfAnimExist(5052)
+value = 5050
+
+[State 1028, Anim 5052] ;Self falling animation (diagup type)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = SelfAnimExist(5052)
+value = 5052
+
+[State 1028, Anim 5060] ;Coming down - normal
+type = ChangeAnim
+trigger1 = Vel Y > -8
+trigger1 = Anim = 5050
+trigger1 = SelfAnimExist(5060)
+persistent = 0
+value = 5060
+
+[State 1028, Anim 5062] ;Coming down - diagup type
+type = ChangeAnim
+trigger1 = Vel Y > -8
+trigger1 = Anim = 5052
+trigger1 = SelfAnimExist(5062)
+persistent = 0
+value = 5062
+
+[State 1028, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
+;---------------------------------------------------------------------------
+; Kung Fu Knee
+; CNS difficulty: medium
+; Description: Like the Kung Fu Palm, this is a special attack. This attack
+;     begins on the ground, launches KFM into the air, then ends when KFM
+;     lands on the ground. To achieve this, we use three states. The first
+;     has KFM starting on the ground (note that type = S in the Statedef).
+;     The ChangeState controller brings KFM into the second state (state
+;     1051) when his ground animation ends. The second state controls KFM's
+;     movement into the air and back towards the ground. The last state
+;     (state 1052) stops KFM from moving when he touches the ground, and
+;     brings him back to his stand state (state 0) when the animation is
+;     over. More details are given in comments before each of the following
+;     states.
+[Statedef 1050]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 55
+velset = 0,0
+anim = 1050
+ctrl = 0
+sprpriority = 2
+
+[State 1050, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 2
+
+[State 1050, 3]
+type = PosAdd
+trigger1 = AnimElem = 4
+x = 80
+
+[State 1050, 4]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Medium
+damage    = 80, 4
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = -40,-280
+hitsound   = 5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -14,-28
+guard.velocity = -28
+air.velocity = -24,-28
+fall = 1
+
+[State 1050, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1051
+
+;------------------
+; Light Kung Fu Knee - jump
+; Description: This state uses a velset parameter in the Statedef to make
+;     KFM move upwards. A value of 2,-6 means 2 pixels/tick forwards, and
+;     6 pixels/tick upwards. Since this is an aerial state, the type is set
+;     to A in the Statedef.
+;     Notice that physics = N (N for None) here. This means we are not using
+;     the built-in aerial physics model (physics = A), so we have complete
+;     control over what KFM does in this state. Since we do not have
+;     physics = A to take care of gravity for us, we need to put in our own
+;     controller for that. Controller 1051,1 does the work of pulling KFM
+;     down towards the ground. Controller 1051,2 checks if KFM has reached
+;     the ground, and changes to state 1052 if so.
+;     In this state's Statedef, we will use the hitdefpersist parameter to
+;     retain the HitDef information from the last state. If we did not have
+;     hitdefpersist, the HitDef will be turned off between state changes.
+[Statedef 1051]
+type    = A
+movetype= A
+physics = N
+velset = 8,-24
+anim = 1051
+hitdefpersist = 1 ;Keep the HitDef from previous state active
+
+[State 1051, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = 1.8
+
+[State 1051, 2]
+type = ChangeState
+trigger1 = Command = "a" || Command = "b"
+trigger1 = Vel y < -4
+value = 1055
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -40
+value = 1052
+
+;------------------
+; Light Kung Fu Knee - land
+; Description: This is KFM's landing state. There is a velset in the
+;     Statedef to stop KFM from moving. Since KFM's y-position can be any
+;     number greater than -10 upon entering this state (see the ChangeState
+;     controller in State 1051), we need to reset it to 0, the ground
+;     level. That is what controller 1052,1 is for.
+[Statedef 1052]
+type    = S
+movetype= I
+physics = S
+anim = 1052
+sprpriority = 1
+velset = 0,0
+
+[State 1052, 1] ;Reset y-position to ground level
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 1052, 2] ;Play a sound for landing
+type = PlaySnd
+trigger1 = Time = 0
+value = 40, 0
+
+[State 1052, 3] ;Give KFM back control early
+type = CtrlSet
+trigger1 = AnimElem = 3, -1
+value = 1
+
+[State 1052, 4] ;Move KFM back a little
+type = PosAdd
+trigger1 = AnimElem = 4
+x = -60
+
+[State 1052, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------
+; Kung Fu Knee - kick
+[Statedef 1055]
+type    = A
+movetype= A
+physics = N
+anim = 1055
+
+[State 1055, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 100,0
+channel = 0
+
+[State 1055, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 1
+
+[State 1055, 3]
+type = PosAdd
+trigger1 = Time = 0
+x = 40
+y = -40
+
+[State 1055, 4] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = 1.8
+
+[State 1055, 5]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Med
+damage    = 35 + (prevstateno = 1061)*5, 2
+priority  = 4
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-360
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 18
+ground.velocity = -24
+guard.velocity = -32
+guard.ctrltime = 14
+air.velocity = -16,-20
+airguard.velocity = -16,-18
+air.fall = 1
+
+[State 1055, 6] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -20
+value = 1056
+
+;------------------
+; Kung Fu Knee - land from kick
+[Statedef 1056]
+type    = S
+movetype= I
+physics = S
+anim = 1056
+sprpriority = 1
+velset = 0,0
+
+[State 1056, 1] ;Reset y-position to ground level
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 1056, 2] ;Play a sound for landing
+type = PlaySnd
+trigger1 = Time = 0
+value = 40, 0
+
+[State 1056, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Strong Kung Fu Knee
+[Statedef 1060]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 60
+velset = 0,0
+anim = 1060
+ctrl = 0
+sprpriority = 2
+
+[State 1060, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 2
+
+[State 1060, 2]
+type = PosAdd
+trigger1 = AnimElem = 2
+x = 24
+
+[State 1060, 3]
+type = PosAdd
+trigger1 = AnimElem = 4
+x = 84
+
+[State 1060, 4]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Medium
+damage    = 90, 4
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = -40,-280
+hitsound   = 5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -14,-30
+guard.velocity = -28
+air.velocity = -14,-30
+fall = 1
+
+[State 1060, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1061
+
+;------------------
+; Strong Kung Fu Knee - jump
+[Statedef 1061]
+type    = A
+movetype= A
+physics = N
+velset = 10,-30
+anim = 1061
+hitdefpersist = 1 ;Keep the HitDef from previous state active
+
+[State 1061, 1]
+type = VelAdd
+trigger1 = 1
+y = 1.8
+
+[State 1061, 2]
+type = ChangeState
+trigger1 = Command = "a" || Command = "b"
+trigger1 = Vel y < -4
+value = 1055
+
+[State 1061, 3]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -40
+value = 1052
+
+;---------------------------------------------------------------------------
+; Fast Kung Fu Knee
+; Description: This version of the Kung Fu Knee hits up to 3 times (including
+;     the kick).
+[Statedef 1070]
+type    = S
+movetype= A
+physics = S
+juggle  = 6
+poweradd= -330
+velset = 0,0
+anim = 1070
+ctrl = 0
+sprpriority = 2
+
+[State 1070, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1070, Afterimage]
+type = AfterImageTime
+trigger1 = 1
+time = 2
+
+[State 1070, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1070, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 2
+
+[State 1070, 2]
+type = PosAdd
+trigger1 = AnimElem = 2
+x = 24
+
+[State 1070, 3]
+type = PosAdd
+trigger1 = AnimElem = 4
+x = 84
+
+[State 1070, 4]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Medium
+getpower  = 0
+damage    = 35, 3
+priority  = 5
+hitflag   = MA
+guardflag = MA
+pausetime = 8,7
+sparkxy = -40,-280
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -8,-24
+guard.velocity = -28
+air.velocity = -8,-24
+fall = 1
+fall.animtype = Med
+fall.recovertime = 30
+
+[State 1070, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1071
+
+;------------------
+; Fast Kung Fu Knee - jump
+[Statedef 1071]
+type    = A
+movetype= A
+physics = N
+velset = 10,-36
+anim = 1071
+
+[State 1071, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 18
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1071, Afterimage]
+type = AfterImageTime
+trigger1 = Vel Y < 0
+time = 2
+
+[State 1071, 1]
+type = VelAdd
+trigger1 = 1
+y = 2
+
+[State 1071, 2]
+type = VelAdd
+trigger1 = Vel Y >= -4
+y = .8
+
+[State 1071, 3]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Medium
+getpower  = 0
+damage    = 68, 4
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = -40,-280
+hitsound   = 5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -12,-38
+guard.velocity = -28
+air.velocity = -12,-38
+fall = 1
+fall.recovertime = 30
+
+[State 1071, 4]
+type = ChangeState
+trigger1 = Command = "a" || Command = "b"
+trigger1 = Vel y < -4
+trigger1 = Time > 0
+value = 1075
+
+[State 1071, 5]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -40
+value = 1052
+
+;------------------
+; Fast Kung Fu Knee - kick
+[Statedef 1075]
+type    = A
+movetype= A
+physics = N
+anim = 1055
+
+[State 1075, Afterimage]
+type = AfterImageTime
+trigger1 = 1
+time = 2
+
+[State 1075, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1075, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 100,0
+channel = 0
+
+[State 1075, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 1
+
+[State 1075, 3]
+type = PosAdd
+trigger1 = Time = 0
+x = 40
+y = -40
+
+[State 1075, 4] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = 1.8
+
+[State 1075, 5]
+type = VelAdd
+trigger1 = Vel Y >= -4
+y = .8
+
+[State 1075, 6]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Med
+damage    = 42, 2
+getpower  = 0
+priority  = 4
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-360
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -24
+guard.velocity = -24
+air.velocity = -16,-24
+airguard.velocity = -16,-18
+air.fall = 1
+
+[State 1075, 7] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -20
+value = 1056
+
+
+;---------------------------------------------------------------------------
+; Light Kung Fu Upper
+; CNS difficulty: easy
+; Description: This is a simple special attack that can hit twice. Notice
+;     the use of the Width controller to keep opponents from getting too
+;     close to KFM during his uppercut (press Ctrl-C, and look at the
+;     yellow bar at KFM's feet during the move).
+;     The second HitDef has some interesting parameters. fall.recovertime
+;     is used to prevent the opponent (p2) from recovering immediately
+;     after being hit (eg. press x+y with KFM to recover). This gives the
+;     attacking KFM a chance to follow up with an extra attack, such as
+;     a Kung Fu Knee. The yaccel parameter, set at 0.4, makes p2 fall at a
+;     greater value of acceleration than the default, which is 0.35.
+[Statedef 1100]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 55
+velset = 0,0
+anim = 1100
+ctrl = 0
+sprpriority = 2
+
+[State 1100, Width]
+type = Width
+trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(13) < 0
+value = 5,0
+
+[State 1100, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 1100, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Med
+damage    = 52, 4
+priority  = 5
+guardflag = MA
+pausetime = 4,8
+sparkxy = 0,-192
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -12
+guard.velocity = -24
+air.velocity = -8,-8
+airguard.velocity = -16,-18
+p2facing = 1
+forcestand = 1         ;Force p2 into a standing state if hit
+
+[State 1100, 3]
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, SA
+animtype  = Up
+damage    = 55, 4
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-440
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -4,-38
+guard.velocity = -24
+air.velocity = -4,-30
+airguard.velocity = -16,-18
+p2facing = 1
+fall = 1                   ;Make p2 fall down
+fall.recovertime = 40      ;40 ticks before p2 can recover from fall
+yaccel = 1.6               ;p2 will accelerate down at this rate when falling
+
+[State 1100, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Strong Kung Fu Upper
+[Statedef 1110]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 60
+velset = 0,0
+anim = 1110
+ctrl = 0
+sprpriority = 2
+
+[State 1110, Width]
+type = Width
+trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(14) < 0
+value = 5,0
+
+[State 1110, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 1110, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Med
+damage    = 57, 4
+priority  = 5
+guardflag = MA
+pausetime = 4,8
+sparkxy = 0,-192
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -12
+guard.velocity = -24
+air.velocity = -8,-8
+airguard.velocity = -16,-18
+p2facing = 1
+forcestand = 1
+
+[State 1110, 3]
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, SA
+animtype  = Up
+damage    = 60, 4
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-440
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -4,-42
+guard.velocity = -24
+air.velocity = -4,-34
+airguard.velocity = -16,-18
+p2facing = 1
+fall = 1
+fall.recovertime = 50
+yaccel = 1.6
+
+[State 1110, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Fast Kung Fu Upper
+[Statedef 1120]
+type    = S
+movetype= A
+physics = S
+juggle  = 6
+poweradd= -330
+velset = 0,0
+anim = 1120
+ctrl = 0
+sprpriority = 2
+
+[State 1120, Width]
+type = Width
+trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(14) < 0
+value = 5,0
+
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1120, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 1120, 2]
+type = HitDef
+trigger1 = Time = 0
+trigger2 = AnimElem = 4
+attr = S, SA
+animtype  = Med
+damage    = 30, 4
+getpower  = 0
+priority  = 5
+guardflag = MA
+pausetime = 6,10
+sparkxy = 0, ifelse(Time = 0, -192, -220)
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 23
+ground.velocity = -12
+guard.velocity = -24
+air.velocity = -8,-8
+airguard.velocity = -16,-18
+p2facing = 1
+forcestand = 1
+
+[State 1120, 3]
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, SA
+animtype  = Up
+damage    = 68, 4
+getpower  = 0
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-440
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 23
+ground.velocity = -4.8,-44
+guard.velocity = -24
+air.velocity = -4.8,-36
+airguard.velocity = -16,-18
+p2facing = 1
+fall = 1
+fall.recovertime = 60
+yaccel = 1.6
+
+[State 1120, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Light Kung Fu Blow
+; CNS difficulty: easy
+; Notes: This uses the EnvShake controller to shake the screen. It makes the
+;        move look stronger.
+[Statedef 1200]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 50
+velset = 0,0
+anim = 1200
+ctrl = 0
+sprpriority = 2
+
+[State 1200, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 3
+
+[State 1200, Width 1]
+type = Width
+trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(6) < 0
+value = 40,0
+
+[State 1200, Width 2]
+type = Width
+trigger1 = AnimElemTime(6) >= 0 && AnimElemTime(9) < 0
+value = 80,0
+
+[State 1200, Shake Screen]
+type = EnvShake
+trigger1 = AnimElem = 6
+time = 4     ;Time to shake screen
+ampl = 8     ;Amount to shake
+freq = 180   ;A frequency of 180 shakes the screen rapidly
+
+[State 1200, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    = 100, 6
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-260
+hitsound   = 5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 18
+ground.hittime  = 20
+ground.velocity = -40
+ground.cornerpush.veloff = -48 ;To push far away when p2 is in corner
+guard.velocity = -28
+air.velocity = -14,-18
+airguard.velocity = -14,-18
+
+[State 1200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Strong Kung Fu Blow
+; CNS difficulty: easy
+[Statedef 1210]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 60
+velset = 0,0
+anim = 1210
+ctrl = 0
+sprpriority = 2
+
+[State 1210, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 3
+
+[State 1210, Width 1]
+type = Width
+trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(6) < 0
+value = 40,0
+
+[State 1210, Width 2]
+type = Width
+trigger1 = AnimElemTime(6) >= 0 && AnimElemTime(9) < 0
+value = 80,0
+
+[State 1210, Shake Screen]
+type = EnvShake
+trigger1 = AnimElem = 6
+time = 8
+ampl = 8
+freq = 170   ;A frequency of less than 180 causes a dampening effect
+
+[State 1210, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    = 125, 9
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkxy = 0,-260
+hitsound   = 5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 22
+ground.velocity = -40
+ground.cornerpush.veloff = -60 ;To push far away when p2 is in corner
+guard.velocity = -32
+air.velocity = -16,-18
+airguard.velocity = -16,-18
+
+[State 1210, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Fast Kung Fu Blow
+; CNS difficulty: easy
+[Statedef 1220]
+type    = S
+movetype= A
+physics = S
+juggle  = 6
+poweradd= -330
+velset = 0,0
+anim = 1220
+ctrl = 0
+sprpriority = 2
+
+[State 1220, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1220, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1220, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1220, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 3
+
+[State 1220, Width 1]
+type = Width
+trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(6) < 0
+value = 40,0
+
+[State 1220, Width 2]
+type = Width
+trigger1 = AnimElemTime(6) >= 0 && AnimElemTime(9) < 0
+value = 80,0
+
+[State 1220, Shake Screen]
+type = EnvShake
+trigger1 = AnimElem = 6
+time = 8
+ampl = 12
+freq = 170
+
+[State 1220, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    = 125, 9
+getpower  = 0
+priority  = 5
+guardflag = MA
+pausetime = 15,15
+sparkxy = 0,-260
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 22
+ground.hittime  = 32
+ground.velocity = -60
+ground.cornerpush.veloff = -80 ;To push far away when p2 is in corner
+guard.velocity = -36
+air.velocity = -20,-20
+airguard.velocity = -20,-20
+air.fall = 1
+fall.animtype = Hard           ;Show "hard" animtype when hit for a fall
+yaccel = 1.6                   ;Fall faster
+
+[State 1220, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+

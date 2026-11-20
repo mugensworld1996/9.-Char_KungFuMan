@@ -1,0 +1,113 @@
+# Kung Fu Man — MUGEN Project
+# Documento inicial
+
+===============================================================================
+1. SOBRE ESTE PROYECTO
+===============================================================================
+
+Personaje:
+    Kung Fu Man
+
+Origen / referencia:
+    MUGEN / Elecbyte
+
+Estado:
+    Desarrollo inicial / preproducción.
+
+Este proyecto busca convertir a Kung Fu Man en un personaje jugable para MUGEN 1.0,
+con sprites nuevos, animaciones propias y un gameplay diseñado alrededor de su
+identidad.
+
+Base inicial generada a partir de conocimiento general del personaje.
+
+===============================================================================
+2. FILOSOFÍA
+===============================================================================
+
+El proyecto sigue la filosofía comunitaria usada en los demás chars de
+Mugen's World:
+
+    MUGEN es de la comunidad para la comunidad.
+
+Los recursos creados específicamente para este proyecto se preparan con intención
+de estudio, modificación y reutilización comunitaria, respetando siempre los
+derechos de los propietarios de los personajes y franquicias originales.
+
+Proyecto fan-made y sin fines comerciales.
+
+===============================================================================
+3. PIPELINE VISUAL
+===============================================================================
+
+Pipeline general previsto:
+
+1. Crear / seleccionar imagen base.
+2. Generar o adaptar apariencia 3D.
+3. Crear animaciones.
+4. Convertir a video cuando corresponda.
+5. Extraer frames.
+6. Limpiar manualmente.
+7. Reescalar al tamaño objetivo del proyecto.
+8. Preparar transparencia / BMP / palette.
+9. Importar al SFF.
+10. Crear AIR, CLSN y lógica MUGEN.
+
+IMPORTANTE:
+Los archivos originales de alta resolución deben conservarse separados de los
+sprites finales reescalados.
+
+===============================================================================
+4. ESTADO ACTUAL
+===============================================================================
+
+Este documento se creó como base inicial.
+
+No se asume que existan todavía:
+- moveset definitivo;
+- Specials;
+- Supers;
+- IA;
+- FX definitivos;
+- balance;
+- arquitectura específica terminada.
+
+El estado técnico real deberá mantenerse en:
+
+    2. developer.txt
+
+Los controles realmente jugables deberán mantenerse en:
+
+    3. gameplay.txt
+
+Las ideas y experimentos deberán mantenerse en:
+
+    4. labs.txt
+
+===============================================================================
+5. CRÉDITOS
+===============================================================================
+
+Proyecto:
+    Mugen's World
+
+Personaje / franquicia:
+    MUGEN / Elecbyte
+
+Herramientas del pipeline:
+    ChatGPT
+    Grok
+    Gemini
+    A2E
+    Vidu
+    VLC
+    Fighter Factory Classic
+    Herramientas de edición de imagen
+
+===============================================================================
+6. AVISO
+===============================================================================
+
+Kung Fu Man y los elementos asociados a su obra/franquicia pertenecen a sus
+respectivos propietarios.
+
+Este es un proyecto fan-made sin fines comerciales.
